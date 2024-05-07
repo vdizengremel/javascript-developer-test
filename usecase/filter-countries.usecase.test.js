@@ -72,4 +72,50 @@ describe('FilterCountriesUseCase', () => {
             ]
         }])
     })
+
+    it('should return in countries only animals whose name includes pattern', async () => {
+        countryRepositoryMock.findAll.mockResolvedValue([
+            {
+                name: 'Dillauti',
+                people: [
+                    {
+                        name: 'Winifred Graham',
+                        animals: [{name: 'Anoa'}]
+                    }
+                ]
+            },
+            {
+                name: 'Satanwi',
+                people: [
+                    {
+                        name: 'Anthony Bruno',
+                        animals: [
+                            {
+                                name: 'Oryx'
+                            },
+                            {
+                                name: 'another animal that does not match pattern'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ])
+
+        const filteredCountries = await filterCountriesUseCase.execute('ry');
+
+        expect(filteredCountries).toEqual([{
+            name: 'Satanwi',
+            people: [
+                {
+                    name: 'Anthony Bruno',
+                    animals: [
+                        {
+                            name: 'Oryx'
+                        }
+                    ]
+                }
+            ]
+        }])
+    })
 })
