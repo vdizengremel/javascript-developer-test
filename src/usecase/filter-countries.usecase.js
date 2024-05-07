@@ -5,12 +5,12 @@ class FilterCountriesUseCase {
 
     async execute(animalSearchPattern) {
         const countries = await this.countryRepository.findAll()
-       const filteredCountries = countries.map(country => ({
-           name: country.name,
-           people: this.#filterPeopleHavingAnimalMatching(country.people, animalSearchPattern)
-       }))
+        const filteredCountries = countries.map(country => ({
+            name: country.name,
+            people: this.#filterPeopleHavingAnimalMatching(country.people, animalSearchPattern)
+        }))
 
-        return filteredCountries.filter(country => country.people.length )
+        return filteredCountries.filter(country => country.people.length)
     }
 
     #filterPeopleHavingAnimalMatching(people, animalSearchPattern) {

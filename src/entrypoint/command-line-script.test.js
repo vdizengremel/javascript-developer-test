@@ -1,4 +1,4 @@
-const app = require('./app');
+const {run} = require('./command-line-script');
 
 describe('App', () => {
     beforeEach(() => {
@@ -7,21 +7,21 @@ describe('App', () => {
 
     describe('when passing filter argument', () => {
         it('should display countries with animals corresponding to filter', async () => {
-            await app(['node', 'app.js', '--filter=ry'])
+            await run(['node', 'app.js', '--filter=ry'])
 
             expect(console.dir).toHaveBeenCalledWith([{
-                name: 'Uzuzozne', people: [{
-                    name: 'Lillie Abbott', animals: [{
-                        name: 'John Dory'
+                    name: 'Uzuzozne', people: [{
+                        name: 'Lillie Abbott', animals: [{
+                            name: 'John Dory'
+                        }]
                     }]
-                }]
-            }, {
-                name: 'Satanwi', people: [{
-                    name: 'Anthony Bruno', animals: [{
-                        name: 'Oryx'
+                }, {
+                    name: 'Satanwi', people: [{
+                        name: 'Anthony Bruno', animals: [{
+                            name: 'Oryx'
+                        }]
                     }]
-                }]
-            }],
+                }],
                 {depth: 5}
             )
         })
@@ -30,7 +30,7 @@ describe('App', () => {
 
     describe('when passing count argument', () => {
         it('should display countries and people with count', async () => {
-            await app(['node', 'app.js', '--count'])
+            await run(['node', 'app.js', '--count'])
 
             const lastCall = console.dir.mock.lastCall
             const lastCallElement = lastCall[0];

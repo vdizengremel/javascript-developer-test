@@ -9,6 +9,7 @@ describe('FilterCountriesUseCase', () => {
         countryRepositoryMock = {
             findAll: jest.fn()
         }
+
         filterCountriesUseCase = new FilterCountriesUseCase(countryRepositoryMock);
     })
 
