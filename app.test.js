@@ -5,8 +5,8 @@ describe('App', () => {
         jest.spyOn(global.console, 'log')
     })
 
-    it('should display countries with animals corresponding to filter', () => {
-        app(['node', 'app.js', '--filter=ry'])
+    it('should display countries with animals corresponding to filter', async () => {
+        await app(['node', 'app.js', '--filter=ry'])
         expect(console.log).toHaveBeenCalledWith([
             {
                 name: 'Uzuzozne',
