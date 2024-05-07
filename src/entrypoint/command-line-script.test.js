@@ -1,6 +1,6 @@
 const {run} = require('./command-line-script');
 
-describe('App', () => {
+describe('Run', () => {
     beforeEach(() => {
         jest.spyOn(global.console, 'dir')
     })
