@@ -1,4 +1,4 @@
-const {FilterCountriesUseCase} = require('./filter-countries.usecase')
+const { FilterCountriesUseCase } = require('./filter-countries.usecase')
 
 describe('FilterCountriesUseCase', () => {
     let filterCountriesUseCase
@@ -117,5 +117,34 @@ describe('FilterCountriesUseCase', () => {
                 }
             ]
         }])
+    })
+
+    it('should not mutate repository data', async () => {
+        let repositoryData = [
+            {
+                name: 'Dillauti',
+                people: [
+                    {
+                        name: 'Winifred Graham',
+                        animals: [{name: 'Anoa'}]
+                    }
+                ]
+            }
+        ];
+        countryRepositoryMock.findAll.mockResolvedValue(repositoryData)
+
+        await filterCountriesUseCase.execute('ry');
+
+        expect(repositoryData).toEqual([
+            {
+                name: 'Dillauti',
+                people: [
+                    {
+                        name: 'Winifred Graham',
+                        animals: [{name: 'Anoa'}]
+                    }
+                ]
+            }
+        ])
     })
 })

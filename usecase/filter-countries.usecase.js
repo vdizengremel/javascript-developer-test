@@ -5,18 +5,25 @@ class FilterCountriesUseCase {
 
     async execute(animalSearchPattern) {
         const countries = await this.countryRepository.findAll()
-        countries.forEach(country => this.#keepPeopleHavingAnimalMatching(country, animalSearchPattern))
+       const filteredCountries = countries.map(country => ({
+           name: country.name,
+           people: this.#filterPeopleHavingAnimalMatching(country.people, animalSearchPattern)
+       }))
 
-        return countries.filter(country => country.people.length)
+        return filteredCountries.filter(country => country.people.length )
     }
 
-    #keepPeopleHavingAnimalMatching(country, animalSearchPattern) {
-        country.people.forEach(person => this.#keepAnimalMatching(person, animalSearchPattern));
-        country.people = country.people.filter(person => person.animals.length)
+    #filterPeopleHavingAnimalMatching(people, animalSearchPattern) {
+        const filteredPeople = people.map(person => ({
+            name: person.name,
+            animals: this.#filterAnimalMatching(person.animals, animalSearchPattern)
+        }))
+
+        return filteredPeople.filter(person => person.animals.length)
     }
 
-    #keepAnimalMatching(person, animalSearchPattern) {
-        person.animals = person.animals.filter(animal => animal.name.includes(animalSearchPattern));
+    #filterAnimalMatching(animals, animalSearchPattern) {
+        return animals.filter(animal => animal.name.includes(animalSearchPattern));
     }
 }
 
