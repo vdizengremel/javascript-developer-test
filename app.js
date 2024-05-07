@@ -3,4 +3,5 @@ function app(args) {
     console.log(args)
 }
 
+module.exports = app
 app(process.argv)
