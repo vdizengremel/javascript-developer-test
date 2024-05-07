@@ -1,11 +1,11 @@
 const {data} = require('./data');
 
-class CountryRepository {
+class CountryStaticDataRepository {
     async findAll() {
         return data
     }
 }
 
 module.exports = {
-    CountryRepository
+    CountryStaticDataRepository: CountryStaticDataRepository
 }
