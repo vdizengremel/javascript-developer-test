@@ -3,7 +3,8 @@
 ## Solution
 ### Design choices
 #### Code structure
-Code is in `src` folder. I separated, in different layers/folders, logic from technical stuff such as fetching data or interacting with console.
+Code is in `src` folder. I separated, in different layers/folders, logic from technical stuff such as fetching data or interacting with console (like in hexagonal architecture or clean architecture).
+
 
 `src` folder contains:
 - `entrypoint`: contains the code interacting with user. Here it is the part of code responsible to read command line argument and display results.
@@ -24,8 +25,8 @@ This allows to change the render of the count without impacting use case.
 Tests can be run with: `npm test`.
 
 There are two kinds of test:
-- tests in `entrypoint` that test the overall by reading the given `data.js`.
-- use case tests that tests a particular aspect of a feature
+- tests in `entrypoint` that test the overall by reading the given `data.js` and testing calls to `console`.
+- use case tests that tests a particular aspect of a feature without interacting with the 'outside' of the use case layer. 
 
 
 ## Given exercise
