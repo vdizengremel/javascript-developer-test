@@ -1,4 +1,4 @@
-const {FilterCountriesUseCase} = require('../usecase/filter-countries.usecase')
+const {FilterCountriesUseCase} = require('../usecase/filter.usecase')
 const {CountUseCase} = require('../usecase/count.usecase')
 const {CountryStaticDataRepository} = require('../infrastructure/country-static-data-repository')
 
@@ -14,11 +14,11 @@ async function run(args) {
     } else {
         const countUseCase = new CountUseCase(new CountryStaticDataRepository())
         const countResult = await countUseCase.execute()
-        displayResult(putCountsInNames(countResult))
+        displayResult(appendCountsInNames(countResult))
     }
 }
 
-function putCountsInNames(countedCountries) {
+function appendCountsInNames(countedCountries) {
     return countedCountries.map(country => ({
         name: mergeNameAndCount(country.name, country.peopleCount),
         people: country.people.map(person => ({

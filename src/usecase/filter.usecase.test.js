@@ -1,4 +1,4 @@
-const { FilterCountriesUseCase } = require('./filter-countries.usecase')
+const { FilterCountriesUseCase } = require('./filter.usecase')
 
 describe('FilterCountriesUseCase', () => {
     let filterCountriesUseCase

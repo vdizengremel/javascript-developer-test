@@ -1,4 +1,4 @@
-class FilterCountriesUseCase {
+class FilterUseCase {
     constructor(countryRepository) {
         this.countryRepository = countryRepository;
     }
@@ -28,5 +28,5 @@ class FilterCountriesUseCase {
 }
 
 module.exports = {
-    FilterCountriesUseCase
+    FilterCountriesUseCase: FilterUseCase
 }
