@@ -50,4 +50,33 @@ describe('count', () => {
             }
         ])
     })
+
+    it('should not mutate repository data', async () => {
+        let repositoryData = [
+            {
+                name: 'Dillauti',
+                people: [
+                    {
+                        name: 'Winifred Graham',
+                        animals: [{name: 'Anoa'}]
+                    }
+                ]
+            }
+        ];
+        countryRepositoryMock.findAll.mockResolvedValue(repositoryData)
+
+        await countUseCase.execute();
+
+        expect(repositoryData).toEqual([
+            {
+                name: 'Dillauti',
+                people: [
+                    {
+                        name: 'Winifred Graham',
+                        animals: [{name: 'Anoa'}]
+                    }
+                ]
+            }
+        ])
+    })
 })
