@@ -42,4 +42,12 @@ describe('Run', () => {
             expect(lastCallElement[0].people[0].name).toEqual('Winifred Graham [6]')
         })
     })
+
+    describe('when passing no argument', () => {
+        it('should not display anything', async () => {
+            await run(['node', 'app.js'])
+
+            expect(console.dir).not.toHaveBeenCalled()
+        })
+    })
 })

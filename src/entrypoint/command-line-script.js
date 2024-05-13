@@ -5,13 +5,13 @@ const {CountryStaticDataAdapter} = require('../infrastructure/country-static-dat
 async function run(args) {
     const arg = args[2];
 
-    if (arg.includes('--filter=')) {
+    if (arg?.includes('--filter=')) {
         const animalSearchTerm = arg.replace('--filter=', '')
 
         const filterCountriesUseCase = new FilterCountriesUseCase(new CountryStaticDataAdapter())
         const filteredCountries = await filterCountriesUseCase.execute(animalSearchTerm)
         displayResult(filteredCountries)
-    } else {
+    } else if(arg === '--count') {
         const countUseCase = new CountUseCase(new CountryStaticDataAdapter())
         const countResult = await countUseCase.execute()
         displayResult(appendCountsInNames(countResult))
