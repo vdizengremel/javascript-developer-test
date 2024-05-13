@@ -15,7 +15,10 @@ Code is in `src` folder. I separated, in different layers/folders, logic from te
 #### Domain folder or not ?
 I hesitated creating a domain folder to leave only orchestration in use cases, but I felt it was a little too much here.
 It would be interesting for a feature that cumulates features like filtering before counting, but I think it was too soon.
-In typescript, I would have put type definitions in folder to document data structure and a `CountryRepository` interface that would have been implemented in infrastructure layer.
+
+In typescript, I would have put in that folder:
+- type definitions such as `Country`, `Person`, `Animal`
+- a `CountryRepository` interface that would have been implemented in infrastructure layer by an adapter.
 
 #### Count calculation
 I chose to add a calculated attribute to returned data by count use case.
