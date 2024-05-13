@@ -1,6 +1,6 @@
 const {FilterCountriesUseCase} = require('../usecase/filter.usecase')
 const {CountUseCase} = require('../usecase/count.usecase')
-const {CountryStaticDataRepository} = require('../infrastructure/country-static-data-repository')
+const {CountryStaticDataAdapter} = require('../infrastructure/country-static-data.adapter')
 
 async function run(args) {
     const arg = args[2];
@@ -8,11 +8,11 @@ async function run(args) {
     if (arg.includes('--filter=')) {
         const animalSearchTerm = arg.replace('--filter=', '')
 
-        const filterCountriesUseCase = new FilterCountriesUseCase(new CountryStaticDataRepository())
+        const filterCountriesUseCase = new FilterCountriesUseCase(new CountryStaticDataAdapter())
         const filteredCountries = await filterCountriesUseCase.execute(animalSearchTerm)
         displayResult(filteredCountries)
     } else {
-        const countUseCase = new CountUseCase(new CountryStaticDataRepository())
+        const countUseCase = new CountUseCase(new CountryStaticDataAdapter())
         const countResult = await countUseCase.execute()
         displayResult(appendCountsInNames(countResult))
     }
