@@ -5,6 +5,10 @@ describe('Run', () => {
         jest.spyOn(global.console, 'dir')
     })
 
+    afterEach(() => {
+        jest.restoreAllMocks()
+    })
+
     describe('when passing filter argument', () => {
         it('should display countries with animals corresponding to filter', async () => {
             await run(['node', 'app.js', '--filter=ry'])
@@ -35,6 +39,7 @@ describe('Run', () => {
             const lastCall = console.dir.mock.lastCall
             const lastCallElement = lastCall[0];
             expect(lastCallElement[0].name).toEqual('Dillauti [5]')
+            expect(lastCallElement[0].people[0].name).toEqual('Winifred Graham [6]')
         })
     })
 })
