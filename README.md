@@ -28,7 +28,8 @@ There are two kinds of test:
 - use case tests that tests a particular aspect of a feature
 
 
-## Filter
+## Given exercise
+### Filter
 
 Your job is to write a command-line interface in Node.js. 
 This program has to filter a list of elements containing a pattern.
@@ -72,7 +73,7 @@ $ node app.js --filter=ry
 ]
 ```
 
-## Count
+### Count
 
 The next goal is to print the counts of People and Animals by counting the number of children and appending it in the name, eg. `Satanwi [2]`.
 
@@ -105,12 +106,12 @@ node app.js --count
 ]
 ```
 
-## Requirements
+### Requirements
 
 - The code must be available in a GIT repository
 - No library/modules should be used, except for the testing library
 
-## Appreciation
+### Appreciation
 
 We will be really attentive to:
 
